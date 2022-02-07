@@ -1,0 +1,309 @@
+<div class="flex-shrink-0 p-3 bg-preto" style="max-width: 15rem;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-light text-decoration-none border-bottom">
+        <i class="fas fa-home me-2 ms-3" style="color: #0f0 !important;"></i>
+        <span class="fs-5 fw-semibold">Página Inicial</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+
+        <!-- Pedido -->
+        <li class="mb-1" id='pedidoButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#pedido-collapse" aria-expanded="false" onclick="pedido()">
+                <p id="butao-pedido" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="pedido"></i>Pedido</p>
+            </button>
+            <div class="collapse" id="pedido-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="pedido-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED1*'){ %>
+                            <li><a href="/orderDetail" class="dropdown-item">Pedido - Detalhe</a></li> 
+                            <li><a href="#" class="dropdown-item">Pedido - Cancelamento</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Ordem de Separação -->
+        <li class="mb-1" id='ordemButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#ordem-collapse" aria-expanded="false" onclick="ordem()">
+                <p id="butao-ordem" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="ordem"></i>Ordem de Separação</p>
+            </button>
+            <div class="collapse" id="ordem-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="ordem-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED2*'){ %>
+                            <li><a href="#" class="dropdown-item">Criar SI</a></li> 
+                        <% } else if(permissao[i][2] == 'PED5*'){ %>
+                            <li><a href="#" class="dropdown-item">Imprimir SI</a></li> 
+                        <% } else if(permissao[i][2] == 'PED3*'){ %>
+                            <li><a href="#" class="dropdown-item">Confirmar Separação</a></li> 
+                        <% } else if(permissao[i][2] == 'PED4*'){ %>
+                            <li><a href="#" class="dropdown-item">SI - Detalhe</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Pacote -->
+        <li class="mb-1" id='pacoteButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#pacote-collapse" aria-expanded="false" onclick="pacote()">
+                <p id="butao-pacote" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="pacote"></i>Pacote</p>
+            </button>
+            <div class="collapse" id="pacote-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="pacote-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED6*'){ %>
+                            <li><a href="#" class="dropdown-item">Criar Pacote</a></li> 
+                        <% } else if(permissao[i][2] == 'PED7*'){ %>
+                            <li><a href="#" class="dropdown-item">Pacote - Consulta</a></li> 
+                        <% } else if(permissao[i][2] == 'PED8*'){ %>
+                            <li><a href="#" class="dropdown-item">Pacote - Detalhe</a></li>   
+                        <% } else if(permissao[i][2] == 'PED9*'){ %>
+                            <li><a href="#" class="dropdown-item">Fechar Pacote</a></li>  
+                        <% } else if(permissao[i][2] == 'PED42*'){ %>
+                            <li><a href="#" class="dropdown-item">Pacote Monitor</a></li> 
+                            <li><a href="#" class="dropdown-item">Alterar Transportadora</a></li> 
+                            <li><a href="#" class="dropdown-item">Cancelar Aprovação</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Faturamento -->
+        <li class="mb-1" id='faturamentoButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#faturamento-collapse" aria-expanded="false" onclick="faturamento()">
+                <p id="butao-faturamento" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="faturamento"></i>Faturamento</p>
+            </button>
+            <div class="collapse" id="faturamento-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="faturamento-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED10*'){ %>
+                            <li><a href="#" class="dropdown-item">Criar Pacote</a></li> 
+                        <% } else if(permissao[i][2] == 'PED11*'){ %>
+                            <li><a href="#" class="dropdown-item">Pacote - Consulta</a></li> 
+                        <% } else if(permissao[i][2] == 'PED17*'){ %>
+                            <li><a href="#" class="dropdown-item">Pacote - Detalhe</a></li>   
+                        <% } else if(permissao[i][2] == 'PED18*'){ %>
+                            <li><a href="#" class="dropdown-item">Pacote Monitor</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Controle Estoque -->
+        <li class="mb-1" id='controleButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#controle-collapse" aria-expanded="false" onclick="controle()">
+                <p id="butao-controle" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="controle"></i>Controle Estoque</p>
+            </button>
+            <div class="collapse" id="controle-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="controle-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED12*'){ %>
+                            <li><a href="#" class="dropdown-item">Registrar Local</a></li> 
+                            <li><a href="#" class="dropdown-item">Excluir Local</a></li> 
+                        <% } else if(permissao[i][2] == 'PED13*'){ %>
+                            <li><a href="#" class="dropdown-item">Movimentação de Peças</a></li> 
+                            <li><a href="#" class="dropdown-item">Movimentação de Peças<Br>(TESTE)</a></li> 
+                        <% } else if(permissao[i][2] == 'PED14*'){ %>
+                            <li><a href="#" class="dropdown-item">Ajuste Estoque Local</a></li>
+                        <% } else if(permissao[i][2] == 'PED16*'){ %>
+                            <li><a href="#" class="dropdown-item">Estoque - Consulta</a></li> 
+                            <li><a href="#" class="dropdown-item">Estoque Local - Consulta</a></li> 
+                        <% } else if(permissao[i][2] == 'PED34*'){ %>
+                            <li><a href="#" class="dropdown-item">Registrar Local - Material</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Inventário -->
+        <li class="mb-1" id='inventarioButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#inventario-collapse" aria-expanded="false" onclick="inventario()">
+                <p id="butao-inventario" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="inventario"></i>Inventário</p>
+            </button>
+            <div class="collapse" id="inventario-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="inventario-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED19*'){ %>
+                            <li><a href="#" class="dropdown-item">Bloquear Local - Inventário</a></li> 
+                        <% } else if(permissao[i][2] == 'PED20*'){ %>
+                            <li><a href="#" class="dropdown-item">Ficha de Inventário</a></li> 
+                        <% } else if(permissao[i][2] == 'PED21*'){ %>
+                            <li><a href="#" class="dropdown-item">Confirmar Contagem</a></li> 
+                        <% } else if(permissao[i][2] == 'PED22*'){ %>
+                            <li><a href="#" class="dropdown-item">Inventário - Detalhe</a></li> 
+                        <% } else if(permissao[i][2] == 'PED23*'){ %>
+                            <li><a href="#" class="dropdown-item">Inventário - Situação</a></li> 
+                        <% } else if(permissao[i][2] == 'PED24*'){ %>
+                            <li><a href="#" class="dropdown-item">Inventário - Cancelamento</a></li> 
+                        <% } else if(permissao[i][2] == 'PED25*'){ %>
+                            <li><a href="#" class="dropdown-item">Inventário - Consulta</a></li> 
+                        <% } else if(permissao[i][2] == 'PED26*'){ %>
+                            <li><a href="#" class="dropdown-item">Inventário - Fechado</a></li> 
+                        <% } else if(permissao[i][2] == 'PED36*'){ %>
+                            <li><a href="#" class="dropdown-item">Relatório - Contábil</a></li> 
+                            <li><a href="#" class="dropdown-item">Relatório - Contábil EBS</a></li> 
+                        <% } else if(permissao[i][2] == 'PED37*'){ %>
+                            <li><a href="#" class="dropdown-item">Relatório - Local</a></li> 
+                        <% } else if(permissao[i][2] == 'PED52*'){ %>
+                            <li><a href="#" class="dropdown-item">Relatório - Físico x Lógico</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Pedido - Compra -->
+        <li class="mb-1" id='compraButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#compra-collapse" aria-expanded="false" onclick="compra()">
+                <p id="butao-compra" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="compra"></i>Pedido - Compra</p>
+            </button>
+            <div class="collapse" id="compra-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="compra-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if (permissao[i][2] == 'PED27'){ %>
+                            <li><a href="#" class="dropdown-item">Trânsito - Detalhe</a></li> 
+                        <% } else if(permissao[i][2] == 'PED31*'){ %>
+                            <li><a href="#" class="dropdown-item">Confirmar Entrada</a></li> 
+                        <% } else if(permissao[i][2] == 'PED47*'){ %>
+                            <li><a href="#" class="dropdown-item">Confrimar Embarque</a></li> 
+                        <% } else if(permissao[i][2] == 'PED49*'){ %>
+                            <li><a href="#" class="dropdown-item">P06 - Monitor</a></li> 
+                        <% } else if(permissao[i][2] == 'PED28*'){ %>
+                            <li><a href="#" class="dropdown-item">KHI Compra - Detalhe</a></li> 
+                            <li><a href="#" class="dropdown-item">KHI Compra - Sugestão</a></li> 
+                        <% } else if(permissao[i][2] == 'PED29*'){ %>
+                            <li><a href="#" class="dropdown-item">KHI Compra - Cancelamento</a></li> 
+                        <% } else if(permissao[i][2] == 'PED32*'){ %>
+                            <li><a href="#" class="dropdown-item">Criar E.I</a></li> 
+                            <li><a href="#" class="dropdown-item">E.I - Detalhe</a></li> 
+                        <% } else if(permissao[i][2] == 'PED33*'){ %>
+                            <li><a href="#" class="dropdown-item">Confirmar E.I</a></li> 
+                        <% } else if(permissao[i][2] == 'PED35*'){ %>
+                            <li><a href="#" class="dropdown-item">NF Entrada - Detalhe</a></li> 
+                        <% } else if(permissao[i][2] == 'PED30*'){ %>
+                            <li><a href="#" class="dropdown-item">EDI para Despachante</a></li> 
+                        <% } else if(permissao[i][2] == 'PED45*'){ %>
+                            <li><a href="#" class="dropdown-item">EDI Despachante Recebe</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Material -->
+        <li class="mb-1" id='materialButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#material-collapse" aria-expanded="false" onclick="material()">
+                <p id="butao-material" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="material"></i>Material</p>
+            </button>
+            <div class="collapse" id="material-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="material-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED38*'){ %>
+                            <li><a href="#" class="dropdown-item">Cadastro Material</a></li> 
+                            <li><a href="#" class="dropdown-item">Atualizar Material</a></li> 
+                        <% } else if(permissao[i][2] == 'PED43*'){ %>
+                            <li><a href="#" class="dropdown-item">Cadastro Material - Lote<br>(Com PMA)</a></li> 
+                        <% } else if(permissao[i][2] == 'PED39*'){ %>
+                            <li><a href="#" class="dropdown-item">Cadastro Material - Lote<br>(Sem PMA)</a></li> 
+                            <li><a href="#" class="dropdown-item">Cadastro Material - Lote<br>(Sem BSB)</a></li> 
+                            <li><a href="#" class="dropdown-item">Cadastro Material - Peças</a></li> 
+                        <% } else if(permissao[i][2] == 'PED40*'){ %>
+                            <li><a href="#" class="dropdown-item">Cadastro Material - Fiscal</a></li> 
+                        <% } else if(permissao[i][2] == 'PED41*'){ %>
+                            <li><a href="#" class="dropdown-item">Regras Fiscais - Sem cadastro</a></li> 
+                        <% } else if(permissao[i][2] == 'PED46*'){ %>
+                            <li><a href="#" class="dropdown-item">Consultar Material</a></li> 
+                            <li><a href="#" class="dropdown-item">Consultar Substitutiva</a></li> 
+                            <li><a href="#" class="dropdown-item">Cadastro Substitutiva</a></li> 
+                        <% } else if(permissao[i][2] == 'PED47*'){ %>
+                            <li><a href="#" class="dropdown-item">Cadastro Material EBS</a></li>
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Pacificação -->
+        <li class="mb-1" id='pacificacaoButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#pacificacao-collapse" aria-expanded="false" onclick="pacificacao()">
+                <p id="butao-pacificacao" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="pacificacao"></i>Precificação</p>
+            </button>
+            <div class="collapse" id="pacificacao-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="pacificacao-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED49*'){ %>
+                            <li><a href="#" class="dropdown-item">Cadastro Preço</a></li> 
+                            <li><a href="/price" class="dropdown-item">Cadastro Preço Peças</a></li>
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Relatório -->
+        <li class="mb-1" id='relatorioButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#relatorio-collapse" aria-expanded="false" onclick="relatorio()">
+                <p id="butao-relatorio" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="relatorio"></i>Relatórios</p>
+            </button>
+            <div class="collapse" id="relatorio-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="relatorio-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'PED53*'){ %>
+                            <li><a href="#" class="dropdown-item">Consulta Invoice</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        
+        <!-- Admin -->
+        <li class="mb-1" id='adminButao'>
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#admin-collapse" aria-expanded="false" onclick="admin()">
+                <p id="butao-admin" class=" text-white"><i class="fas me-2 fa-chevron-circle-right" id="admin"></i>Admin</p>
+            </button>
+            <div class="collapse" id="admin-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" id="admin-ul">
+                    <% for (i = 0; i < permissao.length; i++){ 
+                        if(permissao[i][2] == 'ADMIN'){ %>
+                            <li><a href="#" class="dropdown-item">Controle de Contas</a></li> 
+                        <% }
+                    } %>
+                </ul>
+            </div>
+        </li>
+        <li class="border-top my-3"></li>
+        
+        <!-- Usuário -->
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#usuario-collapse" aria-expanded="false" onclick="usuario()">
+                <p id="butao-usuario" class=" text-white">
+                    <i class="fas me-2 fa-chevron-circle-right" id="usuario"></i>
+                    <%= dados.display_name %>
+                </p>
+            </button>
+            <div class="collapse" id="usuario-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a class="dropdown-item" href="/config">Configurações</a></li>
+                    <li><a class="dropdown-item" href="http://glpi.kawasakibrasil.com/front/ticket.form.php">Suporte</a></li>
+                    <li><a class="dropdown-item" href="/logout">Desconectar</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

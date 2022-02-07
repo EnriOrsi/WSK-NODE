@@ -1,0 +1,145 @@
+<div class="container-fluid d-flex justify-content-center mt-5 mb-5">
+    <div class="container" >
+        <form action="/orderDetail" method="post" id="orderDetailForm">
+            <div class="row g-3">
+                <div class="col">
+                    <label for="pedido" class="form-label">Pedido</label>
+                    <input type="text" name="cdPedido" class="form-control" id="pedidoForm">
+                </div>
+                <div class="col">
+                    <label for="material" class="form-label">Material</label>
+                    <input type="text" name="cdMaterial" class="form-control me-3" id="materialForm">
+                </div>
+                <div class="col">
+                    <label for="dtPedidoFrom" class="form-label" style="width: 10rem !important;">Data Pedido de:</label>
+                    <input type="date" name="fromDate" class="form-control me-4" id="dtPedidoFrom" style="width: 10rem !important;">
+                </div>
+                <div class="col">
+                    <label for="dtPedidoFrom" class="form-label" style="width: 10rem !important; margin-left: -4rem !important;">Data Pedido até:</label>
+                    <input type="date" name="toDate" class="form-control" id="dtPedidoTo" style="width: 10rem !important; margin-left: -4rem !important">
+                </div>
+            </div>
+            <div class="row g-3 mt-2">
+                <div class="col">
+                    <label for="concessionaria" class="form-label" style="width: 10rem !important;">Concessionária</label>
+                    <select name="cdDealer" id="concessionaria" class="form-select" style="width: 10rem !important;">
+                        <option>Todos</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="tipoPedido" class="form-label">Tipo Pedido</label>
+                    <select id="tipoPedido" name="tipoPedido" class="form-select">
+                        <option>Todos</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="registro" class="form-label">Registros Máximos</label>
+                    <select id="registro" name="registros" class="form-select">
+                        <option>500</option>
+                    </select>
+                </div>
+                <div class="col mt-5">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input class="form-check-input" name="bo" type="checkbox" value=1>
+                        </div>
+                        <p class="form-label ms-2 mt-1">BO</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mt-2">
+                <div class="container d-flex justify-content-between">
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn btn-success">Gerar</button>
+                        <button type="button" id="clear" class="btn btn-success">Limpar</button>
+                        <a href="/"><button type="button" class="btn btn-success">Voltar</button></a>
+                    </div>
+                    <div class="col-lg-4"></div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success">Gerar Excel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="container mt-4 opa">
+            <table id="orderDetail" class="stripe hover tabel thead">
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Seq.</th>
+                        <th>Dt. Ped.</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>CFOP</th>
+                        <th>Material</th>
+                        <th style="font-size: 0.7rem;">Mat. Alt.</th>
+                        <th>Requi.</th>
+                        <th>Canc.</th>
+                        <th>SI</th>
+                        <th>BO</th>
+                        <th>Enviado</th>
+                        <th>NF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (typeof order != 'undefined'){
+                            for (i=0;i < order.cdPedido.length; i++){ %>
+                                <tr>
+                                    <td><%=order.cdPedido[i] %></td>
+                                    <td><%=order.sequencia[i] %></td>
+                                    <td><%=order.dtPedido[i] %></td>
+                                    <td><%=order.tpPedido[i] %></td>
+                                    <td><%=order.cdCliente[i] %></td>
+                                    <td><%=order.CFOP[i] %></td>
+                                    <td><%=order.cdMaterial[i] %></td>
+                                    <td><%=order.cdMaterialAlt[i] %></td>
+                                    <td><%=order.requi[i] %></td>
+                                    <td><%=order.canc[i] %></td>
+                                    <td><%=order.si[i] %></td>
+                                    <td><%=order.bo[i] %></td>
+                                    <td><%=order.enviado[i] %></td>
+                                    <td><%=order.nf[i] %></td>
+                                </tr>
+                            <% }
+                        } %>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Seq.</th>
+                        <th>Dt. Ped.</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>CFOP</th>
+                        <th>Material</th>
+                        <th style="font-size: 0.7rem;">Mat. Alt.</th>
+                        <th>Requi.</th>
+                        <th>Canc.</th>
+                        <th>SI</th>
+                        <th>BO</th>
+                        <th>Enviado</th>
+                        <th>NF</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+        var data = new Date();
+        var dia = String(data.getDate()).padStart(2, '0');
+        var mes = String(data.getMonth() + 1).padStart(2, '0');
+        var ano = data.getFullYear();
+        var toDate = ano + '-' + mes + '-' + dia;
+        var fromDate = (ano - 2) + '-' + mes + '-' + dia;
+        $('#dtPedidoTo').val(toDate);
+        $('#dtPedidoFrom').val(fromDate);
+        $('#clear').click(function(){
+            $('#pedidoForm').val(null);
+            $('#materialForm').val('');
+            $('#dtPedidoTo').val(toDate);
+            $('#dtPedidoFrom').val(fromDate);
+        });
+</script>

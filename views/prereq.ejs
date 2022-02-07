@@ -1,0 +1,90 @@
+<div class="container-fluid d-flex justify-content-center mt-4 mb-5">
+    <div class="container">
+        <div class="container ">
+            <table id="prereq" class="stripe hover tabel thead">
+                <thead>
+                    <tr>
+                        <th>Peça</th>
+                        <th>PMA (Opcional)</th>
+                        <th>WSK (Obrigatório)</th>
+                        <th>WSK Status (=0)</th>
+                        <th>EBS Master (Obrigatório)</th>
+                        <th>EBS B04 (Obrigatório)</th>
+                        <th>SEK UF (>=16)</th>
+                        <th>Parts Price Data (Último)</th>
+                        <th>SEK Price Data (Último)</th>
+                        <th>FOB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (typeof peca != 'undefined' && typeof peca.peca == 'object'){ 
+                        for(i=0;i < peca.peca.length;i++){ %>
+                    <tr class="text-center">
+                        <th><%= peca.peca[i] %></th>
+                        <th><%= peca.pma[i] %></th>
+                        <th><%= peca.wsk[i] %></th>
+                        <th><%= peca.wskStatus[i] %></th>
+                        <th><%= peca.ebsMaster[i] %></th>
+                        <th><%= peca.ebsB04[i] %></th>
+                        <th><%= peca.sekUF[i] %></th>
+                        <th><%= peca.partsPrice[i] %></th>
+                        <th><%= peca.sekPrice[i] %></th>
+                        <th><%= peca.fob[i] %></th>
+                    </tr>
+                    <% } 
+                    } else { %>
+                    <tr class="text-center">
+                        <th><%= peca.peca %></th>
+                        <th><%= peca.pma %></th>
+                        <th><%= peca.wsk %></th>
+                        <th><%= peca.wskStatus %></th>
+                        <th><%= peca.ebsMaster %></th>
+                        <th><%= peca.ebsB04 %></th>
+                        <th><%= peca.sekUF %></th>
+                        <th><%= peca.partsPrice %></th>
+                        <th><%= peca.sekPrice %></th>
+                        <th><%= peca.fob %></th>
+                    </tr>
+                    <% } if (typeof peca == 'undefined'){ %>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Peça</th>
+                        <th>PMA (Opcional)</th>
+                        <th>WSK (Obrigatório)</th>
+                        <th>WSK Status (=0)</th>
+                        <th>EBS Master (Obrigatório)</th>
+                        <th>EBS B04 (Obrigatório)</th>
+                        <th>SEK UF (>=16)</th>
+                        <th>Parts Price Data (Último)</th>
+                        <th>SEK Price Data (Último)</th>
+                        <th>FOB</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <p class="text-danger">Contate o TI clicando <a
+                    href="http://glpi.kawasakibrasil.com/front/ticket.form.php">aqui</a></p>
+        </div>
+    </div>
+</div>
+
+<% } %>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Peça</th>
+                        <th>PMA (Opcional)</th>
+                        <th>WSK (Obrigatório)</th>
+                        <th>WSK Status (=0)</th>
+                        <th>EBS Master (Obrigatório)</th>
+                        <th>EBS B04 (Obrigatório)</th>
+                        <th>SEK UF (>=16)</th>
+                        <th>Parts Price Data (Último)</th>
+                        <th>SEK Price Data (Último)</th>
+                        <th>FOB</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

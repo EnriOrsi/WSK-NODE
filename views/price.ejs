@@ -1,0 +1,116 @@
+<div class="container-fluid d-flex justify-item-center mt-5 mb-5">
+    <div class="container">
+        <form action="/price" method="post" id="priceForm">
+            <div id="form"></div>
+            <button type="submit" id="submit" class="btn btn-success float-start mt-3">Cadastrar</button>
+            <button type="button" id="add" class="btn btn-success float-end mt-3 rounded-circle"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <div id="remove">
+                
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    var cont = 1;
+    var form = `<div class="row g-3" id=${cont}>
+                <div class="col">
+                    <label for="cdMaterial" class="form-label">Material</label>
+                    <input type="text" name="cdMaterial" id="cdMaterial" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="procurement_factory_cd" class="form-label">Fabricante</label>
+                    <select id="procurement_factory_cd" name="procurement_factory_cd" class="form-select">
+                        <option>Fabricantes</option>
+                        <option>AKA</option>
+                        <option>KMB</option>
+                        <option>KMC</option>
+                        <option>KME</option>
+                        <option>KMI</option>
+                        <option>KMT</option>
+                        <option>LCN</option>
+                        <option>MRV</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="effectiveDate" class="form-label">Data Efetiva</label>
+                    <input type="date" name="effectiveDate" class="form-control" id="effectiveDate" required>
+                </div>
+                <div class="col">
+                    <label for="fob" class="form-label">FOB</label>
+                    <input type="text" name="fob" id="fob" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="currency_cd" class="form-label">Moeda</label>
+                    <select id="currency_cd" name="currency_cd" class="form-select">
+                        <option>BRL</option>
+                        <option>EUR</option>
+                        <option>USD</option>
+                    </select>
+                </div>
+            </div>`;
+
+    $('#form').html(form);
+    
+    $('#fob').mask('#.##0,00', {reverse: true});
+
+    $('#priceForm').on('submit', function (e) {
+        if ($('#procurement_factory_cd').val() == 'Fabricantes') {
+            e.preventDefault();
+            alert('Selecione um Fabricante!');
+        }
+        return;
+    });
+
+    $('#remove').click(function() {
+        $('#'+cont).remove();
+        cont--;
+        if (cont == 1){
+            $('#del').remove();
+        }
+    });
+
+    $('#add').click(function () {
+        cont++;
+        var form1 = `<div class="row g-3" id=${cont}>
+                <div class="col">
+                    <label for="cdMaterial" class="form-label">Material</label>
+                    <input type="text" name="cdMaterial" id="cdMaterial" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="procurement_factory_cd" class="form-label">Fabricante</label>
+                    <select id="procurement_factory_cd" name="procurement_factory_cd" class="form-select">
+                        <option>Fabricantes</option>
+                        <option>AKA</option>
+                        <option>KMB</option>
+                        <option>KMC</option>
+                        <option>KME</option>
+                        <option>KMI</option>
+                        <option>KMT</option>
+                        <option>LCN</option>
+                        <option>MRV</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="effectiveDate" class="form-label">Data Efetiva</label>
+                    <input type="date" name="effectiveDate" class="form-control" id="effectiveDate" required>
+                </div>
+                <div class="col">
+                    <label for="fob" class="form-label">FOB</label>
+                    <input type="text" name="fob" id="fob" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label for="currency_cd" class="form-label">Moeda</label>
+                    <select id="currency_cd" name="currency_cd" class="form-select">
+                        <option>BRL</option>
+                        <option>EUR</option>
+                        <option>USD</option>
+                    </select>
+                </div>
+            </div>`;
+        $('#form').append(form1);
+        $('#fob').mask('#.##0,00', {reverse: true});
+        if($('#remove').html() == '\n                \n            ' || $('#remove').html() == ''){
+            $('#remove').html(`<button type="button" id="del" class="btn btn-danger float-end mt-3 me-2 rounded-circle"><i class="fa fa-minus" aria-hidden="true"></i></button>`);
+        }
+    });
+</script>

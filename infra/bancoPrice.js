@@ -10,9 +10,9 @@ async function prereq(peca) {
 
         connection = await oracledb.getConnection(conexao);
 
-        if (typeof peca.cdMaterial != 'string' && typeof peca.cdMaterial != 'undefined'){
+        if (typeof peca.cdMaterial != 'string' && typeof peca.cdMaterial != 'undefined') {
             array = [];
-            for (i=0;i<peca.cdMaterial.length;i++){
+            for (i = 0; i < peca.cdMaterial.length; i++) {
                 sql = `WITH CTE AS(
                     SELECT
                         COLUMN_VALUE PECA
@@ -92,7 +92,7 @@ async function prereq(peca) {
                 binds = [
                     peca.cdMaterial[i]
                 ];
-        
+
                 options = {
                     autoCommit: true,
                     extendedMetaData: true
@@ -102,7 +102,7 @@ async function prereq(peca) {
 
                 array.push(result.rows);
 
-            } 
+            }
             return array;
         } else {
             sql = `WITH CTE AS(
@@ -180,11 +180,11 @@ async function prereq(peca) {
             ORDER BY
                 9 asc,
                 1`;
-    
+
             binds = [
                 peca.cdMaterial
             ];
-    
+
             options = {
                 autoCommit: true,
                 extendedMetaData: true
@@ -207,8 +207,122 @@ async function prereq(peca) {
     }
 }
 
+async function insere_sekUF(dados) {
+    lstUF = [ ["3","AM"], ["4","BA"], ["5","CE"], ["6","DF"], ["7","ES"], ["9","GO"], ["10","MG"], ["11","MS"], ["12","MT"], ["14","PB"], ["15","PE"], ["16","PR"], ["17","RJ"], ["21","RS"], ["22","SC"], ["24","SP"] ]
+    let connection;
 
+    try {
+        let sql, binds, options, result, array;
+        connection = await oracledb.getConnection(conexao);
+        
+        for (i = 0; i < lstUF.length; i++){
+            sql = `INSERT INTO SEK_UF(cd_produto, cd_estado, class_preco) VALUES (:1,:2,:3)`;
+                            
+
+            binds = [
+                dados,
+                lstUF[i][1],
+                lstUF[i][0]
+            ];
+
+            options = {
+                autoCommit: true,
+                extendedMetaData: true
+            };
+            result = await connection.execute(sql, binds, options);
+
+        }
+        return result.rowsAffected;
+    } catch (err) {
+        console.log(err);
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    }
+}
+
+async function insertKmtbParts(dados){
+    let connection;
+
+    try {
+        let sql, binds, options, result;
+        connection = await oracledb.getConnection(conexao);
+
+        sql = `INSERT INTO KMTB_CALCULATE_PARTS (CD_MATERIAL,PROCUREMENT_FACTORY_CD, EFFECTIVE_DT,FOB,CURRENCY_CD) VALUES (:1, :2, TO_DATE(:3, 'YYYY-MM-DD'), :4, :5)`;
+
+        binds = [
+            dados.cdMaterial,
+            dados.procurement_factory_cd,
+            dados.effectiveDate,
+            dados.fob,
+            dados.currency_cd
+        ];
+
+        options = {
+            autoCommit: true,
+            extendedMetaData: true
+        }
+        result = await connection.execute(sql, binds, options);
+
+        return result;
+    } catch (err){
+        console.log(err);
+    } finally {
+        if (connection) {
+            try { 
+                await connection.close();
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    }
+}
+
+async function selectPartsPrice(dados){
+    let connection;
+    
+    try{
+        let sql, binds, options, result, array;
+
+        connection = await oracledb.getConnection(conexao);
+
+        array = [];
+
+        sql = `select * from kmvw_kmb_parts_price where cd_material= :1`;
+
+        binds = [
+            dados.cdMaterial
+        ];
+
+        options = {
+            autoCommit: true,
+            extendedMetaData: true
+        };
+
+        result = await connection.execute(sql, binds, options);
+
+       return result.rows;
+    } catch(err){
+        console.log(err);
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.log (err);
+            }
+        }
+    }
+}
 
 module.exports = {
-    prereq: prereq
+    prereq: prereq,
+    insere_sekUF: insere_sekUF,
+    insertKmtbParts: insertKmtbParts,
+    selectPartsPrice: selectPartsPrice
 }

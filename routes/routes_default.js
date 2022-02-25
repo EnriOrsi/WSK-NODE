@@ -86,7 +86,9 @@ module.exports = function (app) {
         res.redirect('/');
     });
 
-    app.get('/teste', function (req, res) {});
+    app.get('/erro', function (req, res) {
+        res.render('error.ejs');
+    });
     
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Rotas Post ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

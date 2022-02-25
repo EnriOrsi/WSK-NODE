@@ -1,0 +1,43 @@
+<div class="container-fluid mt-5 mb-5 ms-5 me-5 bg-danger text-white" style="height: 3rem;">   
+    <div class="d-flex justify-item-between">
+        <% if (error == 0){ %>
+            <div class="col-lg-6">
+                <p class="mt-2">Peça não cadastrada no WSK</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="mt-2 float-end">
+                    <a href="/price" class="text-white" style="text-decoration: none;">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Voltar
+                    </a>
+                </p>
+            </div>
+        <% } else if (error == 1) { %>
+            <div class="col-lg-6">
+                <p class="mt-2">Peça com o status diferente de Ativo</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="mt-2 float-end">
+                    <a href="/price" class="text-white" style="text-decoration: none;">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Voltar
+                    </a>
+                </p>
+            </div>
+        <% } else if (error == 2) { %>
+            <div class="col-lg-5">
+                <p class="mt-2">Erro de UF, acione o TI para que seja corrigido</p>
+            </div>
+            <div class="col-lg-4">
+                <a href="http://glpi.kawasakibrasil.com/front/ticket.form.php" class="text-white" style="text-decoration: none;">
+                    <p class="mt-2"> <b> Clique aqui para Abrir o chamado </b> </p>
+                </a>
+            </div>
+            <div class="col-lg-2">
+                <p class="mt-2 float-end">
+                    <a href="/price" class="text-white" style="text-decoration: none;">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Voltar
+                    </a>
+                </p>
+            </div>
+        <% } %>
+    </div>    
+</div>
